@@ -22,3 +22,6 @@ cmake --build build --target opencvdemo  -- -j4
 ```
 ./build/opencvdemo
 ```
+
+#### Notice:
+** There are multiple c++ files in src folder and if you want to try those, please rename the one file to `main.cpp` and run it.**
