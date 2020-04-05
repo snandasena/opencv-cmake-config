@@ -23,7 +23,7 @@ int display_dst(int delay);
 int main(int argc, char **argv) {
 
     cv::namedWindow(window_name, cv::WINDOW_AUTOSIZE);
-    const char *filename = argc >= 2 ? argv[1] : "/home/sajith/github/opencv-cmake-config/images/cute-dog.jpg";
+    const char *filename = argc >= 2 ? argv[1] : "./images/cute-dog.jpg";
 
     src = cv::imread(filename, cv::IMREAD_COLOR);
     if (src.empty()) {
