@@ -1,22 +1,21 @@
 #include <opencv2/imgproc.hpp>
+#include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <iostream>
 
-using namespace std;
 using namespace cv;
+using namespace std;
 
-cv::Mat src, erosion_dst, dilation_dst;
-
-int erosion_elem = 0;
-int erosion_size = 0;
-int dilation_elem = 0;
-int dilation_size = 0;
+cv::Mat src, dst;
+int morph_elem = 0;
+int morph_size = 0;
+int morph_operator = 0;
+int const max_operator = 4;
 int const max_elem = 2;
 int const max_kernel_size = 21;
+const char *window_name = "Morphology Transformations Demo";
 
-void Erosion(int, void *);
-
-void Dilation(int, void *);
+void Morphology_Operations(int, void *);
 
 int main(int argc, char **argv) {
 
@@ -29,60 +28,38 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    cv::namedWindow("Erosion Demo", cv::WINDOW_AUTOSIZE);
-    cv::namedWindow("Dilation Demo", cv::WINDOW_AUTOSIZE);
-    cv::moveWindow("Dilation Demo", src.cols, 0);
+    cv::namedWindow(window_name, cv::WINDOW_AUTOSIZE);
 
-    cv::createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", "Erosion Demo",
-                       &erosion_elem,
-                       max_elem,
-                       Erosion);
+    cv::createTrackbar("Operator:\n 0: Opening - 1: Closing  \n 2: Gradient - 3: Top Hat \n 4: Black Hat",
+                       window_name,
+                       &morph_operator,
+                       max_operator,
+                       Morphology_Operations);
+
+    cv::createTrackbar("Element:\n 0: Rect - 1: Cross - 2: Ellipse", window_name,
+                       &morph_elem, max_elem,
+                       Morphology_Operations);
+
+    cv::createTrackbar("Kernel size:\n 2n +1", window_name,
+                       &morph_size, max_kernel_size,
+                       Morphology_Operations);
 
 
-    cv::createTrackbar("Kernel size:\n 2n +1", "Erosion Demo",
-                       &erosion_size, max_kernel_size,
-                       Erosion);
-    cv::createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", "Dilation Demo",
-                       &dilation_elem, max_elem,
-                       Dilation);
-    cv::createTrackbar("Kernel size:\n 2n +1", "Dilation Demo",
-                       &dilation_size, max_kernel_size,
-                       Dilation);
-    Erosion(0, 0);
-    Dilation(0, 0);
+    Morphology_Operations(0, 0);
 
     cv::waitKey(0);
 
     return 0;
 }
 
-void Erosion(int, void *) {
-    int erosion_type = 0;
 
-    if (erosion_elem == 0) { erosion_type = cv::MORPH_RECT; }
-    else if (erosion_elem == 1) { erosion_type = cv::MORPH_CROSS; }
-    else if (erosion_elem == 2) { erosion_type = cv::MORPH_ELLIPSE; }
+void Morphology_Operations(int, void *) {
 
-    cv::Mat element = cv::getStructuringElement(erosion_type,
-                                                cv::Size(2 * erosion_size + 1, 2 * erosion_size + 1),
-                                                cv::Point(erosion_size, erosion_size));
+    int operation = morph_operator + 2;
+    cv::Mat element = cv::getStructuringElement(morph_elem,
+                                                cv::Size(2 * morph_size + 1, 2 * morph_size + 1),
+                                                cv::Point(morph_size, morph_size));
 
-    cv::erode(src, erosion_dst, element);
-    cv::imshow("Erosion Demo", erosion_dst);
-}
-
-
-void Dilation(int, void *) {
-    int dilation_type = 0;
-    if (dilation_elem == 0) { dilation_type = cv::MORPH_RECT; }
-    else if (dilation_elem == 1) { dilation_type = cv::MORPH_CROSS; }
-    else if (dilation_elem == 2) { dilation_type = cv::MORPH_ELLIPSE; }
-
-    cv::Mat element = cv::getStructuringElement(dilation_type,
-                                                cv::Size(2 * dilation_size + 1, 2 * dilation_size + 1),
-                                                cv::Point(dilation_size, dilation_size));
-
-    cv::dilate(src, dilation_dst, element);
-    cv::imshow("Dilation Demo", dilation_dst);
-
+    cv::morphologyEx(src, dst, operation, element);
+    cv::imshow(window_name, dst);
 }
