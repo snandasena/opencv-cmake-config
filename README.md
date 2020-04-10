@@ -24,4 +24,8 @@ cmake --build build --target opencvdemo  -- -j4
 ```
 
 #### Notice:
-**There are multiple c++ files in src folder and if you want to try those, please un comment required file from CMakeLists.txt and run it. **
+**There are multiple c++ files in src folder and if you want to try those, please un comment required file from CMakeLists.txt and run it.**
+
+#### Acknowledgement
+
+Please visit [OpenCV](https://docs.opencv.org/4.3.0/d9/df8/tutorial_root.html) 
