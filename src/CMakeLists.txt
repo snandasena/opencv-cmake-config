@@ -13,6 +13,7 @@ find_package(OpenCV REQUIRED)
 #add_executable(opencvdemo MorphologicalOperation_3.cpp)
 #add_executable(opencvdemo HitOrMiss.cpp)
 #add_executable(opencvdemo MorphologicalOperation_3.cpp)
-add_executable(opencvdemo ImagePyramid.cpp)
+#add_executable(opencvdemo ImagePyramid.cpp)
+add_executable(opencvdemo BasicThreshold.cpp)
 
 target_link_libraries(opencvdemo ${OpenCV_LIBS})
