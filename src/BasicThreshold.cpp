@@ -46,7 +46,7 @@ int main(int argc, char *argv) {
 
 
     // create a trackerbar to choose Threshold value
-    cv::createTrackbar(trackbar_type,
+    cv::createTrackbar(trackbar_value,
                        window_name,
                        &threshold_value,
                        max_value,
