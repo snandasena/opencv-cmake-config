@@ -16,6 +16,7 @@ find_package(OpenCV REQUIRED)
 #add_executable(opencvdemo ImagePyramid.cpp)
 #add_executable(opencvdemo BasicThreshold.cpp)
 #add_executable(opencvdemo Threshold_inRange.cpp)
-add_executable(opencvdemo Filter2D.cpp)
+#add_executable(opencvdemo Filter2D.cpp)
+add_executable(opencvdemo AddingBorderImage.cpp)
 
 target_link_libraries(opencvdemo ${OpenCV_LIBS})
