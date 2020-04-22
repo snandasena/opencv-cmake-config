@@ -15,6 +15,7 @@ find_package(OpenCV REQUIRED)
 #add_executable(opencvdemo MorphologicalOperation_3.cpp)
 #add_executable(opencvdemo ImagePyramid.cpp)
 #add_executable(opencvdemo BasicThreshold.cpp)
-add_executable(opencvdemo Threshold_inRange.cpp)
+#add_executable(opencvdemo Threshold_inRange.cpp)
+add_executable(opencvdemo Filter2D.cpp)
 
 target_link_libraries(opencvdemo ${OpenCV_LIBS})
