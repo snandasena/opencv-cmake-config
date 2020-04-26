@@ -20,6 +20,7 @@ find_package(OpenCV REQUIRED)
 #add_executable(opencvdemo AddingBorderImage.cpp)
 #add_executable(opencvdemo SobelDemo.cpp)
 #add_executable(opencvdemo Laplace_Demo.cpp)
-add_executable(opencvdemo CannyDetector_demo.cpp)
+#add_executable(opencvdemo CannyDetector_Demo.cpp)
+add_executable(opencvdemo HoughLines_Demo.cpp)
 
 target_link_libraries(opencvdemo ${OpenCV_LIBS})

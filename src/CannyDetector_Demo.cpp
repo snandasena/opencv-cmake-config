@@ -39,6 +39,8 @@ int main() {
     cv::createTrackbar("Min Threshold", window_name, &lowThreshold, max_lowThreshold, CannyThreshold);
 
     CannyThreshold(0, 0);
+
+//    cv::imshow("Detected edges", detected_edges);
     cv::waitKey(0);
 
     return 0;
