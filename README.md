@@ -1,7 +1,7 @@
 ### How to run this program
 #### Step 01: Clone this repo to your location
 ```
-git clone git@github.com:snandasena/opencv-cmake-config.git
+git clone git@github.com:snandasena/opencv-cpp-examples.git
 ```
 #### Step 02: Create a build directory
 ```
