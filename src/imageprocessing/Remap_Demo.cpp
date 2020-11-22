@@ -24,7 +24,7 @@ int main() {
     int ind = 0;
     while (true) {
         update_map(ind, map_x, map_y);
-        cv::remap(src, dst, map_x, map_y, INTER_LINEAR, BORDER_CONSTANT, cv::Scalar(0, 0, 0));
+        cv::remap(src, dst, map_x, map_y, cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
         cv::imshow(window_name, dst);
 
         auto c = (char) cv::waitKey(1000);
